@@ -1,0 +1,26 @@
+{
+  "name": "@poc/frontend",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@poc/shared": "workspace:*",
+    "@rainbow-me/rainbowkit": "^2.2.3",
+    "@tanstack/react-query": "^5.62.16",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "viem": "^2.23.2",
+    "wagmi": "^2.14.11"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.0"
+  }
+}
