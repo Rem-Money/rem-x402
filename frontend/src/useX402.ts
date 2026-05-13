@@ -6,7 +6,7 @@ import type {
   EIP3009Authorization,
   Permit2Authorization,
   SettlementResponse,
-} from "@poc/shared";
+} from "@x402/shared";
 import { SERVER_URL, PERMIT2_ADDRESS } from "./config";
 
 type Status =

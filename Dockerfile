@@ -21,7 +21,7 @@ ARG VITE_SERVER_URL=http://localhost:4401
 ARG VITE_WALLETCONNECT_PROJECT_ID=x402-poc-demo
 ENV VITE_SERVER_URL=$VITE_SERVER_URL
 ENV VITE_WALLETCONNECT_PROJECT_ID=$VITE_WALLETCONNECT_PROJECT_ID
-RUN pnpm --filter @poc/frontend build
+RUN pnpm --filter @x402/frontend build
 
 # --- Frontend serve ---
 FROM nginx:alpine AS frontend
@@ -32,9 +32,9 @@ EXPOSE 80
 # --- Server ---
 FROM base AS server
 EXPOSE 4401
-CMD ["pnpm", "--filter", "@poc/server", "start"]
+CMD ["pnpm", "--filter", "@x402/server", "start"]
 
 # --- Facilitator ---
 FROM base AS facilitator
 EXPOSE 4402
-CMD ["pnpm", "--filter", "@poc/facilitator", "start"]
+CMD ["pnpm", "--filter", "@x402/facilitator", "start"]

@@ -8,7 +8,7 @@ import type {
   PaymentPayload,
   PaymentAccept,
   Permit2Authorization,
-} from "@poc/shared";
+} from "@x402/shared";
 import { ERC20_ABI, X402_EXACT_PERMIT2_PROXY_ABI } from "./abi.js";
 import {
   RPC_URL,

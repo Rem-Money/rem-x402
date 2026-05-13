@@ -1,5 +1,5 @@
 import "dotenv/config";
-import type { TokenConfig } from "@poc/shared";
+import type { TokenConfig } from "@x402/shared";
 
 export const TOKEN_CONFIG: TokenConfig = {
   address: process.env.TOKEN_ADDRESS! as `0x${string}`,

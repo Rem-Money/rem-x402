@@ -6,7 +6,7 @@ import type {
   PaymentAccept,
   VerifyResponse,
   SettlementResponse,
-} from "@poc/shared";
+} from "@x402/shared";
 import {
   TOKEN_CONFIG,
   PAY_TO,

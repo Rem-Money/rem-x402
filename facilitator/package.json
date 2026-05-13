@@ -1,5 +1,5 @@
 {
-  "name": "@poc/facilitator",
+  "name": "@x402/facilitator",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.13.8",
-    "@poc/shared": "workspace:*",
+    "@x402/shared": "workspace:*",
     "dotenv": "^16.4.7",
     "hono": "^4.7.6",
     "viem": "^2.23.2"

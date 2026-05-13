@@ -5,7 +5,7 @@ import type {
   PaymentPayload,
   VerifyRequest,
   SettleRequest,
-} from "@poc/shared";
+} from "@x402/shared";
 import { TOKEN_CONFIG, NETWORK, PORT } from "./config.js";
 import { verifyEIP3009, settleEIP3009 } from "./eip3009.js";
 import { verifyPermit2, settlePermit2 } from "./permit2.js";

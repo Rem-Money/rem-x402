@@ -88,9 +88,9 @@ This runs the facilitator (:4402), server (:4401), and frontend (:5173) concurre
 To start services individually:
 
 ```bash
-pnpm --filter @poc/facilitator dev   # Terminal 1
-pnpm --filter @poc/server dev        # Terminal 2
-pnpm --filter @poc/frontend dev      # Terminal 3
+pnpm --filter @x402/facilitator dev   # Terminal 1
+pnpm --filter @x402/server dev        # Terminal 2
+pnpm --filter @x402/frontend dev      # Terminal 3
 ```
 
 Open [http://localhost:5173](http://localhost:5173).

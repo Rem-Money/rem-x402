@@ -9,7 +9,7 @@ import type {
   PaymentPayload,
   PaymentAccept,
   EIP3009Authorization,
-} from "@poc/shared";
+} from "@x402/shared";
 import { ERC20_ABI } from "./abi.js";
 import { RPC_URL, SETTLEMENT_PRIVATE_KEY, TOKEN_CONFIG, chain } from "./config.js";
 

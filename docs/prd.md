@@ -808,7 +808,7 @@ No special interface needed — Permit2 works with any standard ERC20. The payer
 
 ## POC: End-to-End Demo (Milestone 0)
 
-Minimal working demo of the entire x402 payment flow before building the full monorepo. Three pieces — all in a single `poc/` directory, no package splitting, no abstractions. Just enough to prove the flow works with a real ERC20 on Base Sepolia.
+Minimal working demo of the entire x402 payment flow before building the full monorepo. Three pieces — all at the workspace root, no package splitting, no abstractions. Just enough to prove the flow works with a real ERC20 on Base Sepolia.
 
 ### Goal
 Connect a browser wallet, pay a configured ERC20 token, and receive a paywalled resource — demonstrating the full loop: client → 402 → sign → retry → verify → settle → 200.
@@ -816,7 +816,6 @@ Connect a browser wallet, pay a configured ERC20 token, and receive a paywalled 
 ### Structure
 
 ```
-poc/
 ├── facilitator/          # Hono server — /verify, /settle, /supported
 │   ├── index.ts          # Endpoints + settlement logic
 │   ├── eip3009.ts        # EIP-3009 verify + settle functions
@@ -835,12 +834,14 @@ poc/
 │   └── vite.config.ts
 ├── shared/
 │   └── types.ts          # Minimal shared types (PaymentRequired, PaymentPayload, etc.)
+├── docs/
+│   └── prd.md            # Product requirements document
 ├── package.json          # Workspace root
 ├── tsconfig.json
 └── .env.example          # RPC_URL, SETTLEMENT_PRIVATE_KEY, TOKEN_ADDRESS, etc.
 ```
 
-### POC Facilitator (`poc/facilitator/`)
+### POC Facilitator (`facilitator/`)
 
 Single Hono server with three endpoints. No database — verify is stateless, settle is fire-and-forget with console logging.
 
@@ -849,7 +850,7 @@ Single Hono server with three endpoints. No database — verify is stateless, se
 - `POST /settle` — re-verify, broadcast tx (EIP-3009 `transferWithAuthorization` or Permit2 proxy `settle`), wait for receipt, return `{ success, transaction }`
 - `GET /supported` — return hardcoded token config
 
-**Config (`poc/facilitator/config.ts`):**
+**Config (`facilitator/config.ts`):**
 ```typescript
 export const TOKEN_CONFIG = {
   address: process.env.TOKEN_ADDRESS!,
@@ -867,7 +868,7 @@ export const NETWORK = process.env.NETWORK || "eip155:84532"; // Base Sepolia de
 
 **Settlement wallet:** A funded EOA on Base Sepolia. Only needs ETH for gas — never holds tokens.
 
-### POC Server (`poc/server/`)
+### POC Server (`server/`)
 
 Single Hono server with one paywalled route.
 
@@ -886,7 +887,7 @@ Single Hono server with one paywalled route.
 PRICE_AMOUNT=1000000000000000    # 0.001 tokens (18 decimals)
 ```
 
-### POC Frontend (`poc/frontend/`)
+### POC Frontend (`frontend/`)
 
 Vite + React app. Minimal UI — no design system, just functional.
 
