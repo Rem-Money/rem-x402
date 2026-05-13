@@ -4,7 +4,6 @@ import {
   http,
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { baseSepolia } from "viem/chains";
 import type {
   PaymentPayload,
   PaymentAccept,
@@ -17,17 +16,18 @@ import {
   TOKEN_CONFIG,
   PERMIT2_ADDRESS,
   X402_EXACT_PERMIT2_PROXY,
+  chain,
 } from "./config.js";
 
 const publicClient = createPublicClient({
-  chain: baseSepolia,
+  chain,
   transport: http(RPC_URL),
 });
 
 const settlementAccount = privateKeyToAccount(SETTLEMENT_PRIVATE_KEY);
 const walletClient = createWalletClient({
   account: settlementAccount,
-  chain: baseSepolia,
+  chain,
   transport: http(RPC_URL),
 });
 

@@ -1,5 +1,8 @@
 {
   "name": "rem-x402-poc",
   "private": true,
-  "scripts": {}
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm --filter @poc/frontend build"
+  }
 }

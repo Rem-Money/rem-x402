@@ -5,24 +5,23 @@ import {
   hexToSignature,
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { baseSepolia } from "viem/chains";
 import type {
   PaymentPayload,
   PaymentAccept,
   EIP3009Authorization,
 } from "@poc/shared";
 import { ERC20_ABI } from "./abi.js";
-import { RPC_URL, SETTLEMENT_PRIVATE_KEY, TOKEN_CONFIG } from "./config.js";
+import { RPC_URL, SETTLEMENT_PRIVATE_KEY, TOKEN_CONFIG, chain } from "./config.js";
 
 const publicClient = createPublicClient({
-  chain: baseSepolia,
+  chain,
   transport: http(RPC_URL),
 });
 
 const settlementAccount = privateKeyToAccount(SETTLEMENT_PRIVATE_KEY);
 const walletClient = createWalletClient({
   account: settlementAccount,
-  chain: baseSepolia,
+  chain,
   transport: http(RPC_URL),
 });
 

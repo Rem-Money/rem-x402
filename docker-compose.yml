@@ -1,0 +1,38 @@
+services:
+  facilitator:
+    build:
+      context: .
+      target: facilitator
+    ports:
+      - "${FACILITATOR_PORT:-4402}:${FACILITATOR_PORT:-4402}"
+    env_file: .env
+    environment:
+      FACILITATOR_PORT: ${FACILITATOR_PORT:-4402}
+    restart: unless-stopped
+
+  server:
+    build:
+      context: .
+      target: server
+    ports:
+      - "${SERVER_PORT:-4401}:${SERVER_PORT:-4401}"
+    env_file: .env
+    environment:
+      SERVER_PORT: ${SERVER_PORT:-4401}
+      FACILITATOR_URL: http://facilitator:${FACILITATOR_PORT:-4402}
+    depends_on:
+      - facilitator
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      target: frontend
+      args:
+        VITE_SERVER_URL: ${VITE_SERVER_URL:-http://localhost:4401}
+        VITE_WALLETCONNECT_PROJECT_ID: ${VITE_WALLETCONNECT_PROJECT_ID:-x402-poc-demo}
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    depends_on:
+      - server
+    restart: unless-stopped

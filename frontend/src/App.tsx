@@ -101,7 +101,10 @@ export function App() {
     }
   }
 
-  const explorerBase = "https://sepolia.basescan.org/tx/";
+  const explorerBase =
+    serverConfig?.network === "eip155:8453"
+      ? "https://basescan.org/tx/"
+      : "https://sepolia.basescan.org/tx/";
 
   return (
     <div style={styles.container}>
