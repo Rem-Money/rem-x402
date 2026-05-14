@@ -17,7 +17,9 @@ import {
 } from "./config.js";
 
 const app = new Hono();
-app.use("/*", cors());
+app.use("/*", cors({
+  exposeHeaders: ["PAYMENT-REQUIRED", "PAYMENT-RESPONSE"],
+}));
 
 function buildPaymentRequirements(): PaymentAccept {
   return {
@@ -109,7 +111,7 @@ app.get("/resource", async (c) => {
 
   return c.json(
     {
-      secret: `You paid ${PRICE_AMOUNT} ${TOKEN_CONFIG.symbol} (smallest unit) for this!`,
+      secret: `You paid ${Number(PRICE_AMOUNT) / 10 ** TOKEN_CONFIG.decimals} ${TOKEN_CONFIG.symbol} for this!`,
       timestamp: new Date().toISOString(),
       txHash: settlement.transaction,
       payer: settlement.payer,
