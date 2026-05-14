@@ -30,12 +30,13 @@ A proof-of-concept implementation of the [x402 HTTP payment protocol](https://ww
 | pnpm | 9+ | `corepack enable` to activate |
 | Docker | 24+ | Only for Docker deployment |
 | Docker Compose | v2+ | Only for Docker deployment |
+| Foundry | latest | Only for deploying test tokens — `curl -L https://foundry.paradigm.xyz | bash` |
 
 You also need:
 
 - A wallet funded with ERC-20 tokens on your target chain (to pay).
 - A **settlement wallet** funded with ETH on your target chain (to submit settlement transactions — the facilitator uses this).
-- An ERC-20 token deployed on Base Sepolia (testnet) or Base (mainnet).
+- An ERC-20 token deployed on Base Sepolia (testnet) or Base (mainnet). See [Deploying a Test Token](#deploying-a-test-token) below if you need one.
 
 ## Environment Variables
 
@@ -129,6 +130,58 @@ docker compose up --build -d
 
 ```bash
 docker compose down
+```
+
+## Deploying a Test Token
+
+The `contracts/` directory contains a UUPS-upgradeable ERC-20 with EIP-3009 support (`transferWithAuthorization`). Deploy it on Base Sepolia to test both x402 transfer methods.
+
+```bash
+cd contracts
+
+# Install Solidity dependencies
+forge install OpenZeppelin/openzeppelin-contracts --no-commit
+forge install OpenZeppelin/openzeppelin-contracts-upgradeable --no-commit
+
+# Build
+forge build
+```
+
+Deploy using your settlement wallet (reads `SETTLEMENT_PRIVATE_KEY` from `.env`):
+
+```bash
+source ../.env
+
+# Defaults: name="Test AUD", symbol="TAUD", decimals=6, mint=1M tokens
+forge script script/Deploy.s.sol:Deploy \
+  --rpc-url https://sepolia.base.org \
+  --broadcast
+
+# Or customize via env vars
+TOKEN_NAME="Test NZD" TOKEN_SYMBOL="TNZD" TOKEN_DECIMALS=6 INITIAL_MINT=500000 \
+  forge script script/Deploy.s.sol:Deploy \
+  --rpc-url https://sepolia.base.org \
+  --broadcast
+```
+
+The script outputs two addresses — use the **Proxy** address as your `TOKEN_ADDRESS`. The proxy pattern (UUPS) keeps each contract well under the EIP-170 size limit.
+
+The deployed token supports both transfer methods:
+
+| `EIP3009_ENABLED` | Method | What happens |
+|---|---|---|
+| `true` | EIP-3009 | User signs once, facilitator calls `transferWithAuthorization` directly on the token |
+| `false` | Permit2 | User approves Permit2 once, then signs per payment |
+
+After deploying, update `.env`:
+
+```env
+TOKEN_ADDRESS=<proxy address>
+TOKEN_NAME=Test AUD
+TOKEN_SYMBOL=TAUD
+TOKEN_DECIMALS=6
+TOKEN_VERSION=1
+EIP3009_ENABLED=true
 ```
 
 ## Testnet vs Mainnet
