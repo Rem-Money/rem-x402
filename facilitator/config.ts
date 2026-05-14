@@ -1,4 +1,5 @@
-import "dotenv/config";
+import { config } from "dotenv";
+config({ path: "../.env" });
 import { base, baseSepolia } from "viem/chains";
 import type { Chain } from "viem";
 import type { TokenConfig } from "@x402/shared";

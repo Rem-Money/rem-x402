@@ -3,3 +3,9 @@ dist
 .env
 .env.local
 .claude
+
+# Foundry
+contracts/out
+contracts/cache
+contracts/lib
+contracts/broadcast

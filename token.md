@@ -38,16 +38,6 @@ Issuer: Catena Digital Pty Ltd (JV between MHC Digital Group & Catena Digital). 
 
 ---
 
-### A$DC — ANZ Bank
-
-Issuer: ANZ Bank. Institutional-only stablecoin, not publicly listed.
-
-Known deployments: Ethereum (primary, ERC-20), Avalanche (Chainlink CCIP pilot), Hedera (testnet).
-
-> **Note:** ANZ has not publicly disclosed the A$DC smart contract addresses. The token operates as a private institutional instrument through ANZ's Digital Asset Services (DAS) portal. Contract addresses are not available on any public explorer or aggregator.
-
----
-
 ### AUDT — Australian Dollar Token
 
 There are multiple projects using the AUDT ticker. The two relevant ones:
@@ -60,38 +50,6 @@ Issuer: AUDT Pty Ltd (ACN: 627 827 383). 1:1 AUD-backed, Austrac compliant.
 |---------|---------|
 | Ethereum | `0xD7e0F80FB28233bdde0006c50568606A8feb964C` |
 | BSC | `0x58841204400821ba0cf0eff3467f36af3fd28258` |
-
-#### AUDT (Auditchain) — Decentralized Audit Protocol Token
-
-Not a stablecoin — this is a utility/governance token for the Auditchain protocol.
-
-| Network | Address | Status |
-|---------|---------|--------|
-| Ethereum | `0xB90cb79B72EB10c39CbDF86e50B1C89F6a235f2e` | Current |
-| Ethereum | `0x777f5591f0743b08701aa37eceaec82b0153f65b` | Legacy (migrated) |
-| Polygon | `0x91c5A5488c0dEcde1Eacd8a4F10e0942fb925067` | Current / Primary |
-
----
-
-### XAUD
-
-Multiple projects use the XAUD ticker. The relevant AUD-pegged ones:
-
-#### XAUD Token — AUD Stablecoin (xaudtoken.com.au)
-
-| Network | Address |
-|---------|---------|
-| Ethereum | `0x1185a1B58bdD774a36cc9598c5E3531dfEB1b736` |
-
-> **Note:** Very low adoption (2 holders, ~1M supply). Only deployed on Ethereum.
-
-#### Australian Tether (XAUD)
-
-| Network | Address |
-|---------|---------|
-| Ethereum | `0x5d4a6758fd767744cb4d5868f91339ebdf39bb08` |
-
-> **Note:** Separate project from above. Low activity.
 
 ---
 

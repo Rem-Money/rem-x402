@@ -39,7 +39,6 @@ contract X402TestToken is
         __ERC20_init(name_, symbol_);
         __ERC20Permit_init(name_);
         __Ownable_init(owner_);
-        __UUPSUpgradeable_init();
         _decimals = decimals_;
     }
 

@@ -1,4 +1,5 @@
-import "dotenv/config";
+import { config } from "dotenv";
+config({ path: "../.env" });
 import type { TokenConfig } from "@x402/shared";
 
 export const TOKEN_CONFIG: TokenConfig = {

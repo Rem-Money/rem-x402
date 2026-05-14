@@ -140,8 +140,8 @@ The `contracts/` directory contains a UUPS-upgradeable ERC-20 with EIP-3009 supp
 cd contracts
 
 # Install Solidity dependencies
-forge install OpenZeppelin/openzeppelin-contracts --no-commit
-forge install OpenZeppelin/openzeppelin-contracts-upgradeable --no-commit
+forge install OpenZeppelin/openzeppelin-contracts
+forge install OpenZeppelin/openzeppelin-contracts-upgradeable
 
 # Build
 forge build
@@ -150,17 +150,18 @@ forge build
 Deploy using your settlement wallet (reads `SETTLEMENT_PRIVATE_KEY` from `.env`):
 
 ```bash
-source ../.env
+# Export .env variables so Foundry can read them
+set -a && source ../.env && set +a
 
 # Defaults: name="Test AUD", symbol="TAUD", decimals=6, mint=1M tokens
 forge script script/Deploy.s.sol:Deploy \
-  --rpc-url https://sepolia.base.org \
+  --rpc-url base_sepolia \
   --broadcast
 
 # Or customize via env vars
 TOKEN_NAME="Test NZD" TOKEN_SYMBOL="TNZD" TOKEN_DECIMALS=6 INITIAL_MINT=500000 \
   forge script script/Deploy.s.sol:Deploy \
-  --rpc-url https://sepolia.base.org \
+  --rpc-url base_sepolia \
   --broadcast
 ```
 
