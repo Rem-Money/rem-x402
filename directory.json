@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "name": "REM x402 Resource Directory",
+  "description": "Available resources accessible via x402 micropayments",
+  "resources": [
+    {
+      "id": "demo-resource",
+      "name": "Demo Protected Resource",
+      "description": "A demonstration resource behind an x402 paywall",
+      "url": "http://localhost:4401/resource",
+      "method": "GET",
+      "price": {
+        "amount": "1000000000000000",
+        "decimals": 18,
+        "symbol": "MTK",
+        "formatted": "0.001 MTK"
+      },
+      "network": "base-sepolia",
+      "chainId": 84532
+    }
+  ]
+}

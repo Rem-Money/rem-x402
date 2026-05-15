@@ -1,0 +1,19 @@
+{
+  "name": "@x402/wallet",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "create": "tsx src/create.ts",
+    "balance": "tsx src/balance.ts",
+    "pay": "tsx src/pay.ts",
+    "approve": "tsx src/approve.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

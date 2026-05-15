@@ -3,3 +3,4 @@ packages:
   - facilitator
   - server
   - frontend
+  - wallet
